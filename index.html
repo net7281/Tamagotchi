@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/character.json" type="text/javascript"></script>
+    <style>
+        #canvas_id{
+            background-color: #7f8a82;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas_id" width="200" height="200"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas_id');
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = '#000';
+        ctx.beginPath();
+
+        let testData = JSON.parse(JSON.stringify(character));
+        console.log(testData.sisi1);
+
+        const s1 =testData.sisi1;
+        const s2 =testData.sisi2;
+
+        let col1 = Object.keys(s1);
+        let col2 = Object.keys(s2);
+        console.log(s2[col1[2]]);
+        let p = true;
+
+
+        // drow 
+        setInterval(function(){
+            ctx.clearRect(0, 0, 200, 200);
+            if(p){
+                for(i=0;i<col1.length;i++){
+                    for(j=0;j<=s1[col1[i]].length;j++){
+                        ctx.fillRect(s1[col1[i]][j]*5, col1[i]*5, 5, 5);
+                    }
+                }
+                p=false;
+            }else{
+                for(i=0;i<col2.length;i++){
+                    for(j=0;j<=s2[col2[i]].length;j++){
+                        ctx.fillRect(s2[col2[i]][j]*5, col2[i]*5, 5, 5);
+                    }
+                }
+                p=true;
+            }
+            
+        },1000)
+        
+        
+        
+    </script>
+</body>
+</html>
